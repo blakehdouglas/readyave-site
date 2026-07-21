@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Ready Ave — melodic guitar pop from Baltimore.">
+  <meta property="og:title" content="Ready Ave">
+  <meta property="og:description" content="New music from Ready Ave.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="images/cover.jpg">
+  <title>Ready Ave</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main>
+    <section class="hero">
+      <div class="hero-image">
+        <img id="heroImage" src="images/cover.jpg" alt="Ready Ave">
+      </div>
+
+      <div class="hero-copy">
+        <p class="eyebrow" id="location"></p>
+        <h1 id="artistName">Ready Ave</h1>
+        <p class="tagline" id="tagline"></p>
+        <p class="intro" id="intro"></p>
+
+        <div class="buttons" id="primaryLinks"></div>
+
+        <div class="release">
+          <p class="eyebrow">Latest release</p>
+          <h2 id="releaseTitle"></h2>
+          <p id="releaseDetails"></p>
+          <p id="releaseDescription"></p>
+        </div>
+      </div>
+    </section>
+
+    <section class="listen">
+      <div>
+        <p class="eyebrow">Listen</p>
+        <h2 id="singleTitle"></h2>
+      </div>
+      <div class="embed" id="musicEmbed">
+        <p>Add your Bandcamp or YouTube embed code in <strong>content.js</strong>.</p>
+      </div>
+    </section>
+
+    <section class="about">
+      <div>
+        <p class="eyebrow">About</p>
+        <h2>Ready Ave</h2>
+      </div>
+      <div>
+        <p id="bio"></p>
+        <p class="credits" id="credits"></p>
+      </div>
+    </section>
+
+    <footer>
+      <p id="footerText"></p>
+      <div id="footerLinks"></div>
+    </footer>
+  </main>
+
+  <script src="content.js"></script>
+  <script>
+    const setText = (id, value) => {
+      const el = document.getElementById(id);
+      if (el && value) el.textContent = value;
+    };
+
+    setText("artistName", site.artistName);
+    setText("location", site.location);
+    setText("tagline", site.tagline);
+    setText("intro", site.intro);
+    setText("releaseTitle", site.release.title);
+    setText("releaseDetails", site.release.details);
+    setText("releaseDescription", site.release.description);
+    setText("singleTitle", site.release.single);
+    setText("bio", site.bio);
+    setText("credits", site.credits);
+    setText("footerText", site.footer);
+
+    if (site.heroImage) {
+      document.getElementById("heroImage").src = site.heroImage;
+    }
+
+    const renderLinks = (targetId, links, className = "") => {
+      const target = document.getElementById(targetId);
+      target.innerHTML = "";
+      links.filter(link => link.url && link.url !== "#").forEach(link => {
+        const a = document.createElement("a");
+        a.href = link.url;
+        a.textContent = link.label;
+        a.target = "_blank";
+        a.rel = "noopener";
+        a.className = className;
+        target.appendChild(a);
+      });
+    };
+
+    renderLinks("primaryLinks", site.primaryLinks, "button");
+    renderLinks("footerLinks", site.footerLinks);
+
+    if (site.embedHtml && site.embedHtml.trim()) {
+      document.getElementById("musicEmbed").innerHTML = site.embedHtml;
+    }
+  </script>
+</body>
+</html>
