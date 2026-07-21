@@ -3,8 +3,6 @@
 
 const site = {
   artistName: "Ready Ave",
-  location: "Baltimore, Maryland",
-  tagline: "Melodic guitar pop, made by friends.",
   intro: "The debut Ready Ave cassette is coming from Clover Records in Japan.",
 
   heroImage: "images/cover.jpg",
@@ -17,7 +15,7 @@ const site = {
   },
 
   primaryLinks: [
-    { label: "Bandcamp", url: "#" },
+    { label: "Bandcamp", url: "https://readyave.bandcamp.com" },
     { label: "Instagram", url: "#" },
     { label: "Clover Records", url: "#" }
   ],
@@ -31,6 +29,6 @@ const site = {
   footer: "© 2026 Ready Ave",
   footerLinks: [
     { label: "Instagram", url: "#" },
-    { label: "Email", url: "mailto:hello@readyave.com" }
+    { label: "Email", url: "mailto:blake@readyave.net" }
   ]
 };
